@@ -1,0 +1,73 @@
+.story{
+    width: 75%;
+    margin: 0 auto;
+    box-shadow: 0 3rem 6rem rgba($color-black,.1);
+    background-color: rgba($color-white,.6);
+    border-radius: 3px;
+    font-size: 1.5rem;
+    padding: 6rem;
+    padding-left: 9rem;
+    transform: skewX(-12deg);
+
+    @include media(tport){
+        width: 100%;
+
+        padding: 4rem;
+        padding-left: 7rem;
+    }
+
+    @include media(phone){
+        transform: skewX(0);
+    }
+
+    // & > *{
+    //     transform: skewX(12deg); // This will not work because in the below class we have another transform and it will take
+    //precedence so we have to mention the same in each class individually.
+    // }
+    &__shape{
+        width: 15rem;
+        height: 15rem;
+        float: left;
+        clip-path:circle(50% at 50% 50%);
+        -webkit-shape-outside: circle(50% at 50% 50%); //Circle and polygon are called a vectorized shape
+        transform: translateX(-3rem) skewX(12deg);
+        position: relative;
+
+        @include media(phone){
+            transform: translateX(-3rem) skewX(0);
+        }
+    }
+    &__image{
+        height:100%;
+        transform: translateX(-4rem) scale(1.4);
+        transition: all .5s;
+        backface-visibility: hidden;
+        overflow: hidden;
+    }
+    &__text{
+        transform: skewX(12deg);
+    }
+    &__caption{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,20%);
+        text-align: center;
+        color: $color-white;
+        font-size: 1.7rem;
+        text-transform: uppercase;
+        opacity: 0;
+        transition: all .5s;
+    }
+
+    &:hover &__caption{
+        opacity: 1;
+        transform: translate(-50%,-50%);
+    }
+
+    &:hover &__image{
+        transform: translateX(-4rem) scale(1);
+        //-webkit-filter: blur(3px) brightness(80%);
+        //filter: blur(3px);
+    }
+} 
